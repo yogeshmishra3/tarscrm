@@ -28,12 +28,6 @@ const TotalRevenue = () => {
         );
         const revenueData = revenueResponse.data;
 
-        // Fetch expenses data
-        // const salaryResponse = await fetch(
-        //   "https://crm-mu-sooty.vercel.app/get-all-salaries"
-        // );
-        // const salaryData = await salaryResponse.json();
-
         const serviceResponse = await fetch(
           "https://crm-mu-sooty.vercel.app/api/integrations"
         );
@@ -64,7 +58,6 @@ const TotalRevenue = () => {
 
         const expenseYears = [
           ...new Set([
-            ...salaryData.map((s) => s.year),
             ...services.flatMap((provider) =>
               provider.services.map((service) =>
                 new Date(service.buyDate).getFullYear()
@@ -90,7 +83,7 @@ const TotalRevenue = () => {
           setSelectedYear(allYears[0].toString());
         }
 
-        calculateFinancials(revenueData, salaryData, services, selectedYear);
+        calculateFinancials(revenueData, services, selectedYear);
       } catch (error) {
         console.error("Error fetching data:", error);
         setFinancialData((prev) => ({
@@ -104,7 +97,7 @@ const TotalRevenue = () => {
     fetchData();
   }, [selectedYear]);
 
-  const calculateFinancials = (revenueData, salaryData, services, year) => {
+  const calculateFinancials = (revenueData, services, year) => {
     const yearNumber = parseInt(year);
 
     // Calculate total revenue for selected year
@@ -130,12 +123,7 @@ const TotalRevenue = () => {
     });
 
     // Calculate total expenses for selected year
-    // 1. Salaries
-    const totalSalaries = salaryData
-      .filter((salary) => salary.year === yearNumber)
-      .reduce((sum, salary) => sum + salary.amount, 0);
-
-    // 2. Service purchases
+    // 1. Service purchases
     const totalServiceCost = services
       .flatMap((provider) =>
         provider.services.filter(
@@ -144,7 +132,7 @@ const TotalRevenue = () => {
       )
       .reduce((sum, service) => sum + service.serviceCost, 0);
 
-    // 3. Service renewals
+    // 2. Service renewals
     const totalRenewalCost = services
       .flatMap((provider) =>
         provider.services.flatMap((service) =>
@@ -156,7 +144,7 @@ const TotalRevenue = () => {
       )
       .reduce((sum, renewal) => sum + renewal.renewalCost, 0);
 
-    const totalExpenses = totalSalaries + totalServiceCost + totalRenewalCost;
+    const totalExpenses = totalServiceCost + totalRenewalCost;
     const profit = totalRevenue - totalExpenses;
     const profitPercentage =
       totalRevenue > 0 ? ((profit / totalRevenue) * 100).toFixed(2) : 0;
