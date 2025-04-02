@@ -28,7 +28,7 @@ function ClientContacts() {
   const [selectedClients, setSelectedClients] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
 
-  const apiUrl = "https://crm-mu-sooty.vercel.app/api/clientDetail";
+  const apiUrl = "https://crm-brown-gamma.vercel.app/api/clientDetail";
 
   useEffect(() => {
     fetchClients();

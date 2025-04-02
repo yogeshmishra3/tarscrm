@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const apiUrl = "https://crm-mu-sooty.vercel.app/api"; // Make sure your backend URL is correct
+const apiUrl = "https://crm-brown-gamma.vercel.app/api"; // Make sure your backend URL is correct
 
 function Tasks() {
   const [tasks, setTasks] = useState([]);

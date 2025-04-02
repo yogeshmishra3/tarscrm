@@ -15,8 +15,8 @@ const Dashboard = () => {
   const [isExpiringTasksPopupOpen, setIsExpiringTasksPopupOpen] =
     useState(false);
 
-  const baseURL = "https://crm-mu-sooty.vercel.app/api/integrations";
-  const apiUrl = "https://crm-mu-sooty.vercel.app/api";
+  const baseURL = "https://crm-brown-gamma.vercel.app/api/integrations";
+  const apiUrl = "https://crm-brown-gamma.vercel.app/api";
 
   useEffect(() => {
     const fetchData = async () => {

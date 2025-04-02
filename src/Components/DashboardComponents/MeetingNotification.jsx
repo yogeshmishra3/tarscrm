@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const MeetingNotifications = () => {
-  const API_BASE_URL = "https://crm-mu-sooty.vercel.app/api/meetings";
+  const API_BASE_URL = "https://crm-brown-gamma.vercel.app/api/meetings";
   const [meetings, setMeetings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

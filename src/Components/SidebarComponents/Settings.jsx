@@ -5,10 +5,11 @@ import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 // import MeetingSetting from "../SettingComponents/MeetingComponents";
 
 // API URLs for integrations, deals, and quotations
-const integrationsApiUrl = "https://crm-mu-sooty.vercel.app/api/integrations";
+const integrationsApiUrl =
+  "https://crm-brown-gamma.vercel.app/api/integrations";
 const dealManagementApiUrl =
-  "https://crm-mu-sooty.vercel.app/api/dealmanagement";
-const quotationsApiUrl = "https://crm-mu-sooty.vercel.app/api/newquotations";
+  "https://crm-brown-gamma.vercel.app/api/dealmanagement";
+const quotationsApiUrl = "https://crm-brown-gamma.vercel.app/api/newquotations";
 
 function Settings() {
   const [deals, setDeals] = useState([]);

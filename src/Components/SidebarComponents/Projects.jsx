@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-const dealsApiUrl = "https://crm-mu-sooty.vercel.app/api/dealmanagement";
+const dealsApiUrl = "https://crm-brown-gamma.vercel.app/api/dealmanagement";
 const projectsDetailsApiUrl =
-  "https://crm-mu-sooty.vercel.app/api/projectsDetails";
-const employeesApiUrl = "https://crm-mu-sooty.vercel.app/api/employees";
+  "https://crm-brown-gamma.vercel.app/api/projectsDetails";
+const employeesApiUrl = "https://crm-brown-gamma.vercel.app/api/employees";
 
 function Projects() {
   const [qualifiedDeals, setQualifiedDeals] = useState([]);

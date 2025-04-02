@@ -16,7 +16,7 @@ const CRMIntegrationPage = () => {
   const [newDueDate, setNewDueDate] = useState("");
   const [showAddProviderModal, setShowAddProviderModal] = useState(false);
 
-  const baseURL = "https://crm-mu-sooty.vercel.app/api/integrations";
+  const baseURL = "https://crm-brown-gamma.vercel.app/api/integrations";
 
   useEffect(() => {
     const fetchData = async () => {

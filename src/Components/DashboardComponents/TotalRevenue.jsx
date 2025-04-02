@@ -24,12 +24,12 @@ const TotalRevenue = () => {
       try {
         // Fetch revenue data
         const revenueResponse = await axios.get(
-          "https://crm-mu-sooty.vercel.app/api/financeDetails"
+          "https://crm-brown-gamma.vercel.app/api/financeDetails"
         );
         const revenueData = revenueResponse.data;
 
         const serviceResponse = await fetch(
-          "https://crm-mu-sooty.vercel.app/api/integrations"
+          "https://crm-brown-gamma.vercel.app/api/integrations"
         );
         const serviceData = await serviceResponse.json();
         const services = serviceData.data || [];

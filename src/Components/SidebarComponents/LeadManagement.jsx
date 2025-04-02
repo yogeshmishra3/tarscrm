@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const dealManagementApiUrl =
-  "https://crm-mu-sooty.vercel.app/api/dealmanagement";
-const newLeadsApiUrl = "https://crm-mu-sooty.vercel.app/api/NewLeads";
-const meetingsApiUrl = "https://crm-mu-sooty.vercel.app/api/meetings";
-const quotationsApiUrl = "https://crm-mu-sooty.vercel.app/api/newquotations";
-const recycleBinApiUrl = "https://crm-mu-sooty.vercel.app/api/dealmanagement";
-const recyclebinhai = "https://crm-mu-sooty.vercel.app/api/recyclebin/restore";
+  "https://crm-brown-gamma.vercel.app/api/dealmanagement";
+const newLeadsApiUrl = "https://crm-brown-gamma.vercel.app/api/NewLeads";
+const meetingsApiUrl = "https://crm-brown-gamma.vercel.app/api/meetings";
+const quotationsApiUrl = "https://crm-brown-gamma.vercel.app/api/newquotations";
+const recycleBinApiUrl =
+  "https://crm-brown-gamma.vercel.app/api/dealmanagement";
+const recyclebinhai =
+  "https://crm-brown-gamma.vercel.app/api/recyclebin/restore";
 
 function Leadmanagement() {
   const [deals, setDeals] = useState([]);
@@ -191,7 +193,7 @@ function Leadmanagement() {
         try {
           console.log(`Deleting duplicate deal: ${dealName} - ${clientName}`);
           const response = await fetch(
-            `https://crm-mu-sooty.vercel.app/api/dealmanagement/${matchingDeal._id}`,
+            `https://crm-brown-gamma.vercel.app/api/dealmanagement/${matchingDeal._id}`,
             {
               method: "DELETE",
             }
@@ -387,7 +389,7 @@ function Leadmanagement() {
     try {
       // First, save the project details to the client-projects API
       const clientProjectResponse = await fetch(
-        "https://crm-mu-sooty.vercel.app/api/client-projects",
+        "https://crm-brown-gamma.vercel.app/api/client-projects",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -413,7 +415,7 @@ function Leadmanagement() {
 
       // Delete the deal from the newquotations API
       const response = await fetch(
-        `https://crm-mu-sooty.vercel.app/api/newquotations/${currentDeal._id}`,
+        `https://crm-brown-gamma.vercel.app/api/newquotations/${currentDeal._id}`,
         {
           method: "DELETE",
         }
@@ -438,7 +440,7 @@ function Leadmanagement() {
       };
 
       const newDealResponse = await fetch(
-        "https://crm-mu-sooty.vercel.app/api/dealmanagement",
+        "https://crm-brown-gamma.vercel.app/api/dealmanagement",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

@@ -41,7 +41,7 @@ const Payments = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        "https://crm-mu-sooty.vercel.app/api/financeDetails"
+        "https://crm-brown-gamma.vercel.app/api/financeDetails"
       );
 
       if (!response.ok) {
@@ -76,7 +76,7 @@ const Payments = () => {
       }
 
       const response = await fetch(
-        `https://crm-mu-sooty.vercel.app/api/financeDetails/${paymentId}`,
+        `https://crm-brown-gamma.vercel.app/api/financeDetails/${paymentId}`,
         {
           method: "DELETE",
           headers: {

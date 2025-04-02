@@ -10,7 +10,7 @@ const TaskProgress = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("https://crm-mu-sooty.vercel.app/api/Newtasks") // Fetch tasks from backend
+    fetch("https://crm-brown-gamma.vercel.app/api/Newtasks") // Fetch tasks from backend
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch tasks");

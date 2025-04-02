@@ -25,7 +25,7 @@ const RevenueChart = () => {
     const fetchFinanceData = async () => {
       try {
         const response = await axios.get(
-          "https://crm-mu-sooty.vercel.app/api/financeDetails"
+          "https://crm-brown-gamma.vercel.app/api/financeDetails"
         );
         const financeData = response.data;
 

@@ -15,7 +15,7 @@ const TopDeals = () => {
     const fetchTopDeals = async () => {
       try {
         const response = await axios.get(
-          "https://crm-mu-sooty.vercel.app/api/dealmanagement"
+          "https://crm-brown-gamma.vercel.app/api/dealmanagement"
         ); // Update with your deployed backend URL
         setTopDeals(response.data);
       } catch (error) {
@@ -27,7 +27,7 @@ const TopDeals = () => {
       try {
         // Fetch deals from dealmanagement API
         const dealsResponse = await axios.get(
-          "https://crm-mu-sooty.vercel.app/api/dealmanagement"
+          "https://crm-brown-gamma.vercel.app/api/dealmanagement"
         ); // Replace with your backend URL
         const deals = dealsResponse.data;
 
@@ -44,7 +44,7 @@ const TopDeals = () => {
 
         // Fetch all the leads from the newquotations API
         const quotationsResponse = await axios.get(
-          "https://crm-mu-sooty.vercel.app/api/newquotations"
+          "https://crm-brown-gamma.vercel.app/api/newquotations"
         ); // Replace with your quotations API URL
         const quotations = quotationsResponse.data;
 
@@ -68,7 +68,7 @@ const TopDeals = () => {
     const fetchSavedQuotations = async () => {
       try {
         const response = await axios.get(
-          "https://crm-mu-sooty.vercel.app/api/newquotations"
+          "https://crm-brown-gamma.vercel.app/api/newquotations"
         ); // Replace with your quotations API URL
         setSavedQuotations(response.data);
       } catch (error) {

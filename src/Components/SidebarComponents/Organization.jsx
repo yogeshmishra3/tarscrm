@@ -11,8 +11,8 @@ const OrganizationsInCards = () => {
   const fetchData = async () => {
     try {
       const [leadsResponse, financeResponse] = await Promise.all([
-        fetch("https://crm-mu-sooty.vercel.app/api/NewLeads"),
-        fetch("https://crm-mu-sooty.vercel.app/api/financeDetails"),
+        fetch("https://crm-brown-gamma.vercel.app/api/NewLeads"),
+        fetch("https://crm-brown-gamma.vercel.app/api/financeDetails"),
       ]);
 
       const leadsData = await leadsResponse.json();

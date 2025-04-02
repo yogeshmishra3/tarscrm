@@ -47,7 +47,7 @@ const Textarea = ({ className, ...props }) => {
 };
 
 export default function Calendar() {
-  const API_BASE_URL = "https://crm-mu-sooty.vercel.app/api/meetings";
+  const API_BASE_URL = "https://crm-brown-gamma.vercel.app/api/meetings";
   const [currentDate, setCurrentDate] = useState(new Date());
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());

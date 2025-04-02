@@ -489,7 +489,7 @@ const MVECQ = () => {
 
       // Save quotation to backend with Cloudinary URL
       const response = await fetch(
-        "https://crm-mu-sooty.vercel.app/api/newquotations",
+        "https://crm-brown-gamma.vercel.app/api/newquotations",
         {
           method: "POST",
           headers: {
@@ -635,7 +635,7 @@ const MVECQ = () => {
     const fetchQuotations = async () => {
       try {
         const response = await fetch(
-          "https://crm-mu-sooty.vercel.app/api/newquotations"
+          "https://crm-brown-gamma.vercel.app/api/newquotations"
         );
         const data = await response.json();
         setSavedQuotations(data);

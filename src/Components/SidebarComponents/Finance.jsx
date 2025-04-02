@@ -49,7 +49,7 @@ const Finance = () => {
 
         // Fetch qualified deals
         const dealsResponse = await fetch(
-          "https://crm-mu-sooty.vercel.app/api/dealmanagement"
+          "https://crm-brown-gamma.vercel.app/api/dealmanagement"
         );
         if (!dealsResponse.ok) throw new Error("Failed to fetch deals.");
         const dealsData = await dealsResponse.json();
@@ -69,7 +69,7 @@ const Finance = () => {
 
         // Fetch project details
         const projectsResponse = await fetch(
-          "https://crm-mu-sooty.vercel.app/api/projectsDetails"
+          "https://crm-brown-gamma.vercel.app/api/projectsDetails"
         );
         if (!projectsResponse.ok)
           throw new Error("Failed to fetch project details.");
@@ -84,7 +84,7 @@ const Finance = () => {
 
         // Fetch finance details
         const financeResponse = await fetch(
-          "https://crm-mu-sooty.vercel.app/api/financeDetails"
+          "https://crm-brown-gamma.vercel.app/api/financeDetails"
         );
         if (!financeResponse.ok)
           throw new Error("Failed to fetch finance details.");
@@ -285,7 +285,7 @@ const Finance = () => {
 
     try {
       const response = await fetch(
-        "https://crm-mu-sooty.vercel.app/api/financeDetails",
+        "https://crm-brown-gamma.vercel.app/api/financeDetails",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -371,7 +371,7 @@ const Finance = () => {
 
       // Send API request to update finance details
       const response = await fetch(
-        "https://crm-mu-sooty.vercel.app/api/financeDetails",
+        "https://crm-brown-gamma.vercel.app/api/financeDetails",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

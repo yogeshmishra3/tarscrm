@@ -29,7 +29,7 @@ function Leads() {
   const [searchTerm, setSearchTerm] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
   const [organizationFilter, setOrganizationFilter] = useState("");
-  const newLeadsApiUrl = "https://crm-mu-sooty.vercel.app/api/NewLeads";
+  const newLeadsApiUrl = "https://crm-brown-gamma.vercel.app/api/NewLeads";
 
   useEffect(() => {
     fetchLeads();

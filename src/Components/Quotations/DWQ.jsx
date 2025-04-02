@@ -388,7 +388,7 @@ const DWQ = () => {
     calculateTotal();
     try {
       const response = await fetch(
-        "https://crm-mu-sooty.vercel.app/api/newquotations",
+        "https://crm-brown-gamma.vercel.app/api/newquotations",
         {
           method: "POST",
           headers: {
@@ -532,7 +532,7 @@ const DWQ = () => {
     const fetchQuotations = async () => {
       try {
         const response = await fetch(
-          "https://crm-mu-sooty.vercel.app/api/newquotations"
+          "https://crm-brown-gamma.vercel.app/api/newquotations"
         );
         const data = await response.json();
         setSavedQuotations(data);

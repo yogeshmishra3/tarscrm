@@ -16,7 +16,7 @@ const EmpSalary = () => {
         setSalaries(salaryData);
 
         const serviceResponse = await fetch(
-          "https://crm-mu-sooty.vercel.app/api/integrations"
+          "https://crm-brown-gamma.vercel.app/api/integrations"
         );
         const serviceData = await serviceResponse.json();
         setServices(serviceData.data || []);

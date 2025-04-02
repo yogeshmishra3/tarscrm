@@ -4,7 +4,7 @@ import autoTable from "jspdf-autotable";
 
 const InvoiceForm = () => {
   // API base URL
-  const API_BASE_URL = "https://crm-mu-sooty.vercel.app/api";
+  const API_BASE_URL = "https://crm-brown-gamma.vercel.app/api";
 
   // Form state
   const [formData, setFormData] = useState({
@@ -1069,7 +1069,7 @@ const InvoiceForm = () => {
                   });
                   // Get a new invoice number
                   fetch(
-                    "https://crm-mu-sooty.vercel.app/api/invoices/latest-number"
+                    "https://crm-brown-gamma.vercel.app/api/invoices/latest-number"
                   )
                     .then((response) => response.json())
                     .then((data) => {
