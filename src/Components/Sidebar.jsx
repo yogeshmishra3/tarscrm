@@ -433,7 +433,7 @@ const Sidebar = () => {
           {menuItems.map((item) => (
             <li
               key={item.content}
-              className={`flex items-center cursor-pointer px-3 py-1 rounded-md mx-2 mb-2 transition 
+              className={`flex items-center cursor-pointer px-3 py-1 rounded-md mx-1 mb-1 transition 
                 ${
                   activeContent === item.content
                     ? "bg-blue-700"
@@ -441,9 +441,9 @@ const Sidebar = () => {
                 }`}
               onClick={() => handleMenuClick(item.content)}
             >
-              <FontAwesomeIcon icon={item.icon} className="text-xl" />
+              <FontAwesomeIcon icon={item.icon} className="text-sm" />
               <span
-                className={`ml-2 text-sm ${isSidebarOpen ? "block" : "hidden"}`}
+                className={`ml-3 text-[11px] ${isSidebarOpen ? "block" : "hidden"}`}
               >
                 {item.name}
               </span>
