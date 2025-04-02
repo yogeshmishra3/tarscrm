@@ -241,7 +241,7 @@ const Sidebar = () => {
             >
               <FontAwesomeIcon icon={item.icon} className="text-sm" />
               <span
-                className={`ml-3 text-[11px] ${
+                className={`ml-3 text-[14px] ${
                   isSidebarOpen ? "block" : "hidden"
                 }`}
               >
