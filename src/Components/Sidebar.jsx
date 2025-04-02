@@ -433,7 +433,7 @@ const Sidebar = () => {
           {menuItems.map((item) => (
             <li
               key={item.content}
-              className={`flex items-center cursor-pointer px-3 py-2 rounded-md mx-2 mb-2 transition 
+              className={`flex items-center cursor-pointer px-3 py-1 rounded-md mx-2 mb-2 transition 
                 ${
                   activeContent === item.content
                     ? "bg-blue-700"
