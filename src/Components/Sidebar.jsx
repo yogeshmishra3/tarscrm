@@ -11,7 +11,6 @@ import {
   faCog,
   faFileInvoiceDollar,
   faHandshake,
-  faVideo,
   faExchangeAlt,
   faFileContract,
   faBars,
@@ -21,9 +20,6 @@ import {
   faExclamationCircle,
   faMoneyBillAlt,
   faSignOutAlt,
-  faVideoSlash,
-  faPhoneAlt,
-  faExpand,
 } from "@fortawesome/free-solid-svg-icons";
 import ClientContacts from "./SidebarComponents/ClientContact";
 import Deals from "./SidebarComponents/LeadManagement";
@@ -39,9 +35,7 @@ import Leads from "./SidebarComponents/Lead";
 import EmailManagement from "./SidebarComponents/Email";
 import OrganizationsInCards from "./SidebarComponents/Organization";
 import Quotation from "./SidebarComponents/Quotations";
-import VideoCall from "./SidebarComponents/CreateMeeting";
 import Settings from "./SidebarComponents/Settings";
-import { useMeeting } from "./MeetingComponent/MeetingContext";
 
 // Custom Logout Confirmation Modal Component
 const LogoutConfirmationModal = ({ isOpen, onClose, onConfirm }) => {
@@ -90,168 +84,12 @@ const LogoutConfirmationModal = ({ isOpen, onClose, onConfirm }) => {
   );
 };
 
-// Enhanced Mini Meeting Control Component
-const MiniMeetingControl = () => {
-  const {
-    activeMeetingUrl,
-    endMeeting,
-    maximizeMeeting,
-    isMeetingMinimized,
-    meetingTitle,
-    participantCount,
-  } = useMeeting();
-
-  if (!isMeetingMinimized || !activeMeetingUrl) return null;
-
-  return (
-    <div className="fixed bottom-4 right-4 bg-white rounded-lg shadow-lg overflow-hidden z-40 w-72 border border-blue-200">
-      <div className="bg-blue-600 text-white p-3 flex justify-between items-center">
-        <div className="flex items-center space-x-2">
-          <FontAwesomeIcon icon={faVideo} className="text-white" />
-          <span className="text-sm font-medium truncate max-w-[160px]">
-            {meetingTitle || "Active Meeting"}
-          </span>
-        </div>
-        <div className="flex space-x-2">
-          <button
-            onClick={maximizeMeeting}
-            className="text-white hover:text-blue-200 transition"
-            title="Maximize meeting"
-          >
-            <FontAwesomeIcon icon={faExpand} />
-          </button>
-          <button
-            onClick={endMeeting}
-            className="text-white hover:text-red-300 transition"
-            title="End meeting"
-          >
-            <FontAwesomeIcon icon={faVideoSlash} />
-          </button>
-        </div>
-      </div>
-      <div className="p-3">
-        <div className="flex items-center justify-between mb-2">
-          <div className="flex items-center space-x-2">
-            <FontAwesomeIcon icon={faUsers} className="text-gray-500 text-xs" />
-            <span className="text-xs text-gray-700">
-              {participantCount} participant{participantCount !== 1 ? "s" : ""}
-            </span>
-          </div>
-          <div className="flex items-center space-x-1 text-xs text-gray-500">
-            <FontAwesomeIcon icon={faPhoneAlt} />
-            <span>Meeting Active</span>
-          </div>
-        </div>
-        <div className="flex items-center justify-between">
-          <span className="text-xs text-gray-500 truncate w-40">
-            {activeMeetingUrl}
-          </span>
-          <button
-            onClick={() => {
-              navigator.clipboard.writeText(activeMeetingUrl);
-              alert("Meeting link copied!");
-            }}
-            className="text-blue-500 hover:text-blue-700 text-xs"
-            title="Copy meeting link"
-          >
-            <FontAwesomeIcon icon={faExchangeAlt} />
-          </button>
-        </div>
-      </div>
-      <div className="bg-blue-50 p-2 flex justify-center">
-        <button
-          onClick={maximizeMeeting}
-          className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center"
-        >
-          <FontAwesomeIcon icon={faVideo} className="mr-2" />
-          Return to Meeting
-        </button>
-      </div>
-    </div>
-  );
-};
-
-// Floating Meeting Button Component
-const FloatingMeetingButton = ({ onClick }) => {
-  const { isMeetingActive } = useMeeting();
-
-  return (
-    <button
-      onClick={onClick}
-      className={`fixed bottom-4 right-4 p-3 rounded-full shadow-lg transition z-30 flex items-center justify-center ${
-        isMeetingActive
-          ? "bg-green-600 hover:bg-green-700"
-          : "bg-blue-600 hover:bg-blue-700"
-      } text-white`}
-      title={isMeetingActive ? "Return to meeting" : "Start a meeting"}
-    >
-      <FontAwesomeIcon icon={isMeetingActive ? faVideo : faVideo} size="lg" />
-      {isMeetingActive && (
-        <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
-      )}
-    </button>
-  );
-};
-
-// Meeting Modal Component
-const MeetingModal = ({ isOpen, onClose }) => {
-  const modalRef = useRef();
-  const { isMeetingActive } = useMeeting();
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        onClose();
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen, onClose]);
-
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div
-        ref={modalRef}
-        className="bg-white rounded-lg w-full max-w-3xl h-3/4 shadow-lg overflow-hidden"
-      >
-        <div className="bg-blue-600 text-white p-3 flex justify-between items-center">
-          <h3 className="text-lg font-medium">Create Meeting</h3>
-          <button
-            onClick={onClose}
-            className="text-white hover:text-red-300 transition"
-          >
-            <FontAwesomeIcon icon={faTimes} />
-          </button>
-        </div>
-        <div className="p-0 overflow-auto h-full">
-          <VideoCall />
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const Sidebar = () => {
   const [activeContent, setActiveContent] = useState("dashboard");
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
-  const [isMeetingModalOpen, setIsMeetingModalOpen] = useState(false);
   const location = useLocation();
-  const {
-    isMeetingActive,
-    endMeeting,
-    minimizeMeeting,
-    maximizeMeeting,
-    isMeetingMinimized,
-  } = useMeeting();
 
   // Check if viewport is mobile
   useEffect(() => {
@@ -281,10 +119,6 @@ const Sidebar = () => {
   };
 
   const handleConfirmLogout = () => {
-    // End any active meetings before logging out
-    if (isMeetingActive) {
-      endMeeting();
-    }
     console.log("Logging out...");
     localStorage.clear();
     window.location.href = "/login";
@@ -295,44 +129,10 @@ const Sidebar = () => {
   };
 
   const handleMenuClick = (content) => {
-    // If going to meeting component and there's an active meeting, maximize it
-    if (content === "meeting" && isMeetingActive) {
-      maximizeMeeting();
-    }
-
-    // If leaving meeting component and there's an active meeting, minimize it
-    if (
-      activeContent === "meeting" &&
-      content !== "meeting" &&
-      isMeetingActive
-    ) {
-      minimizeMeeting();
-    }
-
     setActiveContent(content);
     if (isMobile) {
       setIsSidebarOpen(false);
     }
-  };
-
-  const handleFloatingMeetingClick = () => {
-    // If there's an active meeting, maximize it, otherwise open the meeting modal
-    if (isMeetingActive) {
-      if (isMeetingMinimized) {
-        maximizeMeeting();
-      } else {
-        // If already in meeting view, do nothing
-        if (activeContent !== "meeting") {
-          setActiveContent("meeting");
-        }
-      }
-    } else {
-      setIsMeetingModalOpen(true);
-    }
-  };
-
-  const closeMeetingModal = () => {
-    setIsMeetingModalOpen(false);
   };
 
   const renderComponent = () => {
@@ -363,8 +163,6 @@ const Sidebar = () => {
         return <Projects />;
       case "invoice":
         return <InvoiceForm />;
-      case "meeting":
-        return <VideoCall />;
       case "quotation":
         return <Quotation />;
       case "settings":
@@ -384,11 +182,11 @@ const Sidebar = () => {
     { name: "Email", content: "email", icon: faEnvelope },
     { name: "Project", content: "project", icon: faProjectDiagram },
     { name: "Complaints", content: "complaints", icon: faExclamationCircle },
-    { name: "Create Meeting", content: "meeting", icon: faVideo },
     { name: "Organization", content: "organization", icon: faUsers },
     { name: "Finance", content: "finance", icon: faMoneyBillAlt },
     { name: "Integration", content: "integration", icon: faExchangeAlt },
     { name: "Invoice", content: "invoice", icon: faFileInvoiceDollar },
+    { name: "Quotation", content: "quotation", icon: faFileContract },
     { name: "Settings", content: "settings", icon: faCog },
   ];
 
@@ -443,14 +241,12 @@ const Sidebar = () => {
             >
               <FontAwesomeIcon icon={item.icon} className="text-sm" />
               <span
-                className={`ml-3 text-[11px] ${isSidebarOpen ? "block" : "hidden"}`}
+                className={`ml-3 text-[11px] ${
+                  isSidebarOpen ? "block" : "hidden"
+                }`}
               >
                 {item.name}
               </span>
-              {/* Add indicator for active meeting */}
-              {item.content === "meeting" && isMeetingActive && (
-                <span className="w-2 h-2 rounded-full bg-green-500 ml-auto animate-pulse"></span>
-              )}
             </li>
           ))}
         </ul>
@@ -478,14 +274,6 @@ const Sidebar = () => {
       >
         {/* Main Content */}
         <div className="p-4">{renderComponent()}</div>
-
-        {/* Enhanced Mini Meeting Control */}
-        <MiniMeetingControl />
-
-        {/* Floating Meeting Button - Only show when meeting is not minimized or there's no active meeting */}
-        {(!isMeetingMinimized || !isMeetingActive) && (
-          <FloatingMeetingButton onClick={handleFloatingMeetingClick} />
-        )}
       </div>
 
       {/* Logout Confirmation Modal */}
@@ -494,9 +282,6 @@ const Sidebar = () => {
         onClose={handleCancelLogout}
         onConfirm={handleConfirmLogout}
       />
-
-      {/* Meeting Modal */}
-      <MeetingModal isOpen={isMeetingModalOpen} onClose={closeMeetingModal} />
     </div>
   );
 };
