@@ -620,12 +620,14 @@ const InvoiceForm = () => {
   return (
     <div className="container mx-auto p-4 bg-gray-50 min-h-screen">
       <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-6xl mx-auto">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold">Invoice Management System</h1>
-          <div className="flex space-x-4">
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+          <h1 className="text-xl sm:text-2xl font-bold text-center sm:text-left">
+            Invoice Management 
+          </h1>
+          <div className="flex flex-wrap w-full sm:w-auto justify-center sm:justify-end space-x-2 sm:space-x-4">
             <button
               onClick={() => setActiveTab("createInvoice")}
-              className={`px-4 py-2 rounded font-bold ${
+              className={`px-3 py-2 sm:px-4 sm:py-2 rounded font-bold text-sm sm:text-base ${
                 activeTab === "createInvoice"
                   ? "bg-blue-500 text-white"
                   : "bg-gray-200 text-gray-700 hover:bg-gray-300"
@@ -635,7 +637,7 @@ const InvoiceForm = () => {
             </button>
             <button
               onClick={() => setActiveTab("previousInvoices")}
-              className={`px-4 py-2 rounded font-bold ${
+              className={`px-3 py-2 sm:px-4 sm:py-2 rounded font-bold text-sm sm:text-base ${
                 activeTab === "previousInvoices"
                   ? "bg-blue-500 text-white"
                   : "bg-gray-200 text-gray-700 hover:bg-gray-300"

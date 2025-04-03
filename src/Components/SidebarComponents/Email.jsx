@@ -5,6 +5,7 @@ import ComposeEmail from "../EmailComponent/ComposeEmail";
 import ViewEmail from "../EmailComponent/ViewEmail";
 import DraftsList from "../EmailComponent/DraftsList";
 import Header from "../EmailComponent/Header";
+import { PanelLeft } from "lucide-react";
 
 // Define API URL
 const API_URL = "https://crm-brown-gamma.vercel.app/api";
@@ -20,6 +21,7 @@ const EmailDashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentUser, setCurrentUser] = useState("yogibaba1207@gmail.com");
   const [showCompose, setShowCompose] = useState(false);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   // Fetch emails based on active view
   useEffect(() => {
@@ -30,6 +32,8 @@ const EmailDashboard = () => {
     } else if (activeView === "drafts") {
       fetchDrafts();
     }
+    // Close mobile sidebar when view changes
+    setMobileSidebarOpen(false);
   }, [activeView]);
 
   // Fetch inbox emails
@@ -307,6 +311,11 @@ const EmailDashboard = () => {
     }
   };
 
+  // Toggle mobile sidebar
+  const toggleMobileSidebar = () => {
+    setMobileSidebarOpen(!mobileSidebarOpen);
+  };
+
   return (
     <div className="flex flex-col h-screen bg-background">
       <Header
@@ -314,11 +323,23 @@ const EmailDashboard = () => {
         setSearchQuery={setSearchQuery}
         handleSearch={handleSearch}
         currentUser={currentUser}
+        toggleMobileSidebar={toggleMobileSidebar}
       />
 
-      <div className="flex flex-1 overflow-hidden">
-        {/* Desktop sidebar */}
-        <div className="hidden md:block w-50 border-r">
+      <div className="flex flex-1 overflow-hidden relative">
+        {/* Mobile sidebar toggle button */}
+      
+
+        {/* Mobile sidebar overlay */}
+        {mobileSidebarOpen && (
+          <div
+            className="fixed inset-0 bg-black/50 z-30 md:hidden"
+            onClick={() => setMobileSidebarOpen(false)}
+          />
+        )}
+
+        {/* Desktop sidebar - always visible on md+ screens */}
+        <div className="hidden md:block w-48 lg:w-56 border-r shrink-0">
           <Sidebar
             activeView={activeView}
             setActiveView={setActiveView}
@@ -326,8 +347,22 @@ const EmailDashboard = () => {
           />
         </div>
 
+        {/* Mobile sidebar - conditionally visible with overlay */}
+        <div
+          className={`fixed left-0 top-0 h-full z-40  bg-white shadow-lg transform transition-transform duration-300 ease-in-out md:hidden ${
+            mobileSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
+        >
+          <Sidebar
+            activeView={activeView}
+            setActiveView={setActiveView}
+            setShowCompose={setShowCompose}
+            isMobile={true}
+          />
+        </div>
+
         {/* Main content area */}
-        <div className="flex-1 overflow-auto">
+        <div className="flex-1 overflow-auto px-2 sm:px-4">
           {activeView === "inbox" && (
             <EmailList
               emails={emails}
@@ -380,6 +415,31 @@ const EmailDashboard = () => {
           }}
         />
       )}
+
+      {/* Mobile compose button - fixed at bottom right */}
+      <div className="md:hidden fixed right-4 bottom-4 z-20">
+        <button
+          className="bg-blue-600 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg"
+          onClick={() => setShowCompose(true)}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M21 14l-3 -3l-3 3" />
+            <path d="M14 11v7.5c0 1.5 -.5 2.5 -2 2.5h-7c-1.5 0 -2 -1 -2 -2.5v-10.5c0 -1.5 .5 -2.5 2 -2.5h4" />
+            <path d="M3 9h6" />
+            <path d="M3 13h3" />
+          </svg>
+        </button>
+      </div>
     </div>
   );
 };

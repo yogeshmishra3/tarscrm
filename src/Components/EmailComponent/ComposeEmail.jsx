@@ -64,6 +64,7 @@ const Textarea = ({ name, placeholder, value, onChange, className }) => {
 
 const ComposeEmail = ({ draft = null, onSend, onSaveDraft, onClose }) => {
   const fileInputRef = useRef(null);
+  const modalRef = useRef(null);
 
   const [emailData, setEmailData] = useState({
     to: "",
@@ -74,6 +75,39 @@ const ComposeEmail = ({ draft = null, onSend, onSaveDraft, onClose }) => {
   const [attachment, setAttachment] = useState(null);
   const [isEdited, setIsEdited] = useState(false);
   const [toast, setToast] = useState(null);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  // Check screen size
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth < 640);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => {
+      window.removeEventListener("resize", checkScreenSize);
+    };
+  }, []);
+
+  // Close modal when clicking outside (for larger screens only)
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target) &&
+        !isSmallScreen
+      ) {
+        onClose();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [onClose, isSmallScreen]);
 
   // Simple toast implementation
   const showToast = ({ title, description, variant }) => {
@@ -193,10 +227,10 @@ const ComposeEmail = ({ draft = null, onSend, onSaveDraft, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-2 sm:p-4">
       {toast && (
         <div
-          className={`fixed top-4 right-4 p-4 rounded shadow-lg ${
+          className={`fixed top-4 right-4 p-4 rounded shadow-lg max-w-xs z-50 ${
             toast.variant === "destructive"
               ? "bg-red-500 text-white"
               : "bg-gray-800 text-white"
@@ -207,17 +241,27 @@ const ComposeEmail = ({ draft = null, onSend, onSaveDraft, onClose }) => {
         </div>
       )}
 
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl flex flex-col">
-        <div className="p-4 border-b flex justify-between items-center">
+      <div
+        ref={modalRef}
+        className={`bg-white rounded-lg shadow-xl w-full flex flex-col ${
+          isSmallScreen ? "h-full max-h-full" : "max-w-2xl max-h-[90vh]"
+        }`}
+      >
+        <div className="p-3 sm:p-4 border-b flex justify-between items-center">
           <h2 className="text-lg font-medium">
             {draft ? "Edit Draft" : "New Message"}
           </h2>
-          <Button variant="ghost" size="icon" onClick={onClose}>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={onClose}
+            className="shrink-0"
+          >
             <X className="h-4 w-4" />
           </Button>
         </div>
 
-        <div className="p-4 flex-1 overflow-auto">
+        <div className="p-3 sm:p-4 flex-1 overflow-auto">
           <div className="space-y-4">
             <div className="border-b pb-2">
               <Input
@@ -246,7 +290,9 @@ const ComposeEmail = ({ draft = null, onSend, onSaveDraft, onClose }) => {
               placeholder="Compose your message..."
               value={emailData.message}
               onChange={handleInputChange}
-              className="min-h-[200px] border-none resize-none"
+              className={`${
+                isSmallScreen ? "min-h-[40vh]" : "min-h-[200px]"
+              } border-none resize-none`}
             />
 
             {attachment && (
@@ -258,7 +304,7 @@ const ComposeEmail = ({ draft = null, onSend, onSaveDraft, onClose }) => {
                   variant="ghost"
                   size="icon"
                   onClick={removeAttachment}
-                  className="h-8 w-8"
+                  className="h-8 w-8 shrink-0"
                 >
                   <Trash className="h-4 w-4" />
                 </Button>
@@ -267,11 +313,11 @@ const ComposeEmail = ({ draft = null, onSend, onSaveDraft, onClose }) => {
           </div>
         </div>
 
-        <div className="p-4 border-t flex justify-between">
-          <div className="flex space-x-2">
+        <div className="p-3 sm:p-4 border-t flex flex-wrap gap-2 sm:gap-0 sm:justify-between">
+          <div className="flex flex-wrap gap-2">
             <Button onClick={handleSend}>Send</Button>
             <Button variant="outline" onClick={handleSaveDraft}>
-              Save as Draft
+              Save Draft
             </Button>
             <div>
               <input
@@ -291,7 +337,12 @@ const ComposeEmail = ({ draft = null, onSend, onSaveDraft, onClose }) => {
             </div>
           </div>
 
-          <Button variant="ghost" size="icon" onClick={onClose}>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={onClose}
+            className="sm:ml-auto"
+          >
             <Trash className="h-4 w-4" />
           </Button>
         </div>
