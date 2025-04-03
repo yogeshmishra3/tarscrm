@@ -281,9 +281,9 @@ function Leads() {
         {/* Header Section */}
         <header className="p-4 md:p-6 border-b border-gray-200 flex-shrink-0">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0 mb-4">
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-800">
-              Leads Management
-            </h1>
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-800">
+              Leads
+            </h3>
             <div className="flex gap-2">
               <button
                 onClick={toggleMultiSelectMode}

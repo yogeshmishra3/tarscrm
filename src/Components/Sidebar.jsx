@@ -86,20 +86,18 @@ const LogoutConfirmationModal = ({ isOpen, onClose, onConfirm }) => {
 
 const Sidebar = () => {
   const [activeContent, setActiveContent] = useState("dashboard");
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Default closed on mobile
   const [isMobile, setIsMobile] = useState(false);
+  const [isCompactMode, setIsCompactMode] = useState(false); // Track compact mode for desktop
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const location = useLocation();
 
-  // Check if viewport is mobile
+  // Check if viewport is mobile and set initial sidebar state
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-      if (window.innerWidth < 768) {
-        setIsSidebarOpen(false);
-      } else {
-        setIsSidebarOpen(true);
-      }
+      const isMobileView = window.innerWidth < 768;
+      setIsMobile(isMobileView);
+      setIsSidebarOpen(!isMobileView); // Open by default on desktop, closed on mobile
     };
 
     checkMobile();
@@ -132,6 +130,17 @@ const Sidebar = () => {
     setActiveContent(content);
     if (isMobile) {
       setIsSidebarOpen(false);
+    } else if (isCompactMode) {
+      // If in desktop compact mode, clicking a menu also keeps sidebar in compact mode
+      setIsSidebarOpen(false);
+    }
+  };
+
+  // Toggle sidebar function
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+    if (!isMobile) {
+      setIsCompactMode(!isCompactMode);
     }
   };
 
@@ -192,10 +201,18 @@ const Sidebar = () => {
 
   return (
     <div className="flex h-screen w-screen overflow-hidden">
+      {/* Hamburger menu for mobile - always visible */}
+      <button
+        className="fixed top-4 left-4 z-40 md:hidden bg-[#211C84] text-white p-2 rounded-md"
+        onClick={toggleSidebar}
+      >
+        <FontAwesomeIcon icon={isSidebarOpen ? faTimes : faBars} size="lg" />
+      </button>
+
       {/* Mobile Overlay */}
       {isMobile && isSidebarOpen && (
         <div
-          className="fixed inset-0 bg-transparent bg-opacity-50 z-20"
+          className="fixed inset-0 bg-black bg-opacity-50 z-20"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
@@ -203,21 +220,25 @@ const Sidebar = () => {
       {/* Sidebar */}
       <div
         className={`bg-[#211C84] text-white transition-all duration-300 ease-in-out z-30
-          ${isSidebarOpen ? "w-64" : "w-16"} 
-          fixed md:static h-full`}
+          fixed md:relative h-full
+          ${
+            isSidebarOpen
+              ? "w-64 translate-x-0"
+              : "w-0 -translate-x-full md:w-16 md:translate-x-0"
+          }`}
       >
         {/* Sidebar Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-700">
           <h2
-            className={`text-lg font-bold ${
-              isSidebarOpen ? "block" : "hidden"
+            className={`text-lg font-bold transition-opacity duration-300 ${
+              isSidebarOpen ? "opacity-100" : "opacity-0 md:hidden"
             }`}
           >
             CRM
           </h2>
           <button
-            className="focus:outline-none p-1 rounded"
-            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            className="focus:outline-none p-1 rounded hidden md:block"
+            onClick={toggleSidebar}
           >
             <FontAwesomeIcon
               icon={isSidebarOpen ? faTimes : faBars}
@@ -231,7 +252,7 @@ const Sidebar = () => {
           {menuItems.map((item) => (
             <li
               key={item.content}
-              className={`flex items-center cursor-pointer px-3 py-1 rounded-md mx-1 mb-1 transition 
+              className={`flex items-center cursor-pointer px-3 py-2 rounded-md mx-1 mb-1 transition whitespace-nowrap
                 ${
                   activeContent === item.content
                     ? "bg-blue-700"
@@ -241,8 +262,8 @@ const Sidebar = () => {
             >
               <FontAwesomeIcon icon={item.icon} className="text-sm" />
               <span
-                className={`ml-3 text-[15px] ${
-                  isSidebarOpen ? "block" : "hidden"
+                className={`ml-3 text-[11px] transition-opacity duration-300 ${
+                  isSidebarOpen ? "opacity-100" : "opacity-0 md:hidden"
                 }`}
               >
                 {item.name}
@@ -255,11 +276,15 @@ const Sidebar = () => {
         <div className="px-3 pb-3 mt-auto">
           <button
             onClick={handleLogoutClick}
-            className="flex items-center w-full text-amber-500 hover:bg-red-700 px-3 py-2 rounded-md transition"
+            className={`flex items-center w-full text-amber-500 hover:bg-red-700 px-3 py-2 rounded-md transition ${
+              !isSidebarOpen && "justify-center md:justify-start"
+            }`}
           >
-            <FontAwesomeIcon icon={faSignOutAlt} className="text-xl" />
+            <FontAwesomeIcon icon={faSignOutAlt} className="text-sm" />
             <span
-              className={`ml-2 text-sm ${isSidebarOpen ? "inline" : "hidden"}`}
+              className={`ml-2 text-sm transition-opacity duration-300 ${
+                isSidebarOpen ? "opacity-100" : "opacity-0 md:hidden"
+              }`}
             >
               Logout
             </span>
@@ -270,10 +295,10 @@ const Sidebar = () => {
       {/* Content Section */}
       <div
         className={`transition-all duration-300 ease-in-out h-screen overflow-auto 
-          ${isSidebarOpen ? "" : "ml-16"} w-full relative`}
+          w-full relative`}
       >
         {/* Main Content */}
-        <div className="p-4">{renderComponent()}</div>
+        <div className="p-4 md:p-6 pt-16 md:pt-6">{renderComponent()}</div>
       </div>
 
       {/* Logout Confirmation Modal */}
