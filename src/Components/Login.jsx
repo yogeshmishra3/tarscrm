@@ -21,14 +21,13 @@ function Login({ onLogin }) {
   };
 
   return (
-    <div className="flex items-center justify-center w-full min-h-screen bg-gradient-to-r from-blue-50 to-purple-50">
+    <div className="flex items-center justify-center w-full min-h-screen bg-gradient-to-r from-blue-50 to-purple-50 p-4">
       <div
-        className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 transform transition-all hover:scale-105"
-        style={{ width: "500px", height: "400px" }}
+        className="bg-white p-6 md:p-8 rounded-xl md:rounded-2xl shadow-xl border border-gray-100 w-full max-w-md"
       >
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-800 mb-2">
-            Welcome to CRM
+          <h2 className="text-2xl md:text-2xl font-bold text-gray-800 mb-2">
+          Welcome to TARSTECH-CRM
           </h2>
           <p className="text-gray-500 text-sm">Sign in to continue</p>
         </div>

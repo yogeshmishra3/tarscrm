@@ -61,12 +61,13 @@ const OrganizationsInCards = () => {
   };
 
   return (
-    <div className="mt-8 px-4">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">
+    <div className="mt-8 px-2 sm:px-4">
+      <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">
         Organizations Leads
       </h2>
       <div className="overflow-x-auto rounded-lg shadow-sm">
-        <table className="w-full bg-white border-collapse">
+        {/* Desktop Table */}
+        <table className="hidden sm:table w-full bg-white border-collapse">
           <thead className="bg-gray-100">
             <tr>
               <th className="p-3 text-left text-sm font-semibold text-gray-700 border-b">
@@ -124,7 +125,7 @@ const OrganizationsInCards = () => {
                     </td>
                     <td className="p-3 text-sm border-b">
                       <button
-                        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
+                        className="bg-blue-500 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-md hover:bg-blue-600 transition-colors text-xs sm:text-sm"
                         onClick={() => handleEmail(lead.email)}
                       >
                         Email
@@ -142,6 +143,58 @@ const OrganizationsInCards = () => {
             )}
           </tbody>
         </table>
+
+        {/* Mobile Cards */}
+        <div className="sm:hidden space-y-4 p-2">
+          {leads.length > 0 ? (
+            leads.map((lead) => {
+              const { total, balance } = getFinanceData(lead);
+              return (
+                <div key={lead._id} className="bg-white p-4 rounded-lg shadow">
+                  <div className="grid grid-cols-2 gap-2 mb-3">
+                    <div>
+                      <p className="text-xs text-gray-500">Organization</p>
+                      <p className="text-sm font-medium">{lead.organization}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Project</p>
+                      <p className="text-sm font-medium">{lead.leadName}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Total</p>
+                      <p className="text-sm font-medium">${total.toFixed(2)}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Balance</p>
+                      <p className="text-sm font-medium">${balance.toFixed(2)}</p>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span
+                      className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        balance === 0
+                          ? "bg-green-100 text-green-700"
+                          : "bg-yellow-100 text-yellow-700"
+                      }`}
+                    >
+                      {balance === 0 ? "Completed" : "Pending"}
+                    </span>
+                    <button
+                      className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600 transition-colors text-xs"
+                      onClick={() => handleEmail(lead.email)}
+                    >
+                      Email
+                    </button>
+                  </div>
+                </div>
+              );
+            })
+          ) : (
+            <div className="p-6 text-center text-gray-500">
+              No organization leads found.
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
