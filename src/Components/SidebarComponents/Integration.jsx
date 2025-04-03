@@ -196,7 +196,7 @@ const CRMIntegrationPage = () => {
           CRM Integration Page
         </h1>
         <button
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow transition-colors"
+          className="bg-blue-800 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow transition-colors"
           onClick={handleAddProviderClick}
         >
           Add Provider
@@ -341,7 +341,7 @@ const CRMIntegrationPage = () => {
                   Services
                 </h3>
                 <button
-                  className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm transition-colors"
+                  className="bg-blue-500 hover:bg-blue-800 text-white px-3 py-1 rounded text-sm transition-colors"
                   onClick={handleAddService}
                 >
                   Add Another Service

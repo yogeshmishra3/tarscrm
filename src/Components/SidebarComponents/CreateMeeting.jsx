@@ -300,7 +300,7 @@ const VideoCall = () => {
                 disabled={!meetingCode}
                 className={`flex-1 py-3 px-4 rounded-md font-medium ${
                   meetingCode
-                    ? "bg-blue-600 hover:bg-blue-700 text-white"
+                    ? "bg-blue-800 hover:bg-blue-700 text-white"
                     : "bg-gray-200 text-gray-500 cursor-not-allowed"
                 }`}
               >
@@ -452,7 +452,7 @@ const VideoCall = () => {
               </button>
               <button
                 onClick={copyToClipboard}
-                className="p-3 bg-blue-600 rounded-full text-white hover:bg-blue-700 flex items-center"
+                className="p-3 bg-blue-800 rounded-full text-white hover:bg-blue-700 flex items-center"
                 title="Copy meeting link"
               >
                 <FaLink className="mr-2" />

@@ -326,7 +326,7 @@ function Settings() {
             </button>
             <button
               onClick={handleSaveServices}
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              className="px-4 py-2 bg-blue-800 text-white rounded hover:bg-blue-700"
             >
               Save
             </button>
@@ -928,7 +928,7 @@ function Settings() {
                           <div className="flex flex-col sm:flex-row gap-2">
                             <button
                               onClick={() => handleEditQuotation(quotation._id)}
-                              className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition"
+                              className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-800 transition"
                             >
                               Edit
                             </button>
@@ -1058,7 +1058,7 @@ function Settings() {
                                           service._id
                                         )
                                       }
-                                      className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition"
+                                      className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-800 transition"
                                     >
                                       Edit
                                     </button>

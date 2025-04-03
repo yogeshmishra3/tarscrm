@@ -225,7 +225,7 @@ function Leads() {
                 resetFormData();
                 setShowNewDealModal(true);
               }}
-              className="bg-blue-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-md hover:bg-blue-600 transition duration-200 text-sm sm:text-base w-full sm:w-auto"
+              className="bg-blue-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-md hover:bg-blue-800 transition duration-200 text-sm sm:text-base w-full sm:w-auto"
             >
               Add New Deal +
             </button>
@@ -532,7 +532,7 @@ function Leads() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-200 text-sm font-medium"
+                  className="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition duration-200 text-sm font-medium"
                 >
                   {formData._id ? "Update Deal" : "Add Deal"}
                 </button>
@@ -564,7 +564,7 @@ function Leads() {
                 </button>
                 <button
                   onClick={toggleDealStatus}
-                  className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-200 text-sm"
+                  className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition duration-200 text-sm"
                 >
                   Confirm
                 </button>

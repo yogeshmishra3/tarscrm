@@ -310,7 +310,7 @@ function Leads() {
                   resetFormData();
                   setShowNewDealModal(true);
                 }}
-                className="bg-blue-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-md hover:bg-blue-600 transition duration-200 text-sm sm:text-base"
+                className="bg-blue-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-md hover:bg-blue-800 transition duration-200 text-sm sm:text-base"
               >
                 Add New Lead +
               </button>
@@ -321,7 +321,7 @@ function Leads() {
             <div className="mb-4 flex gap-2">
               <button
                 onClick={toggleSelectAll}
-                className="bg-blue-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-md hover:bg-blue-600 transition duration-200 text-sm sm:text-base"
+                className="bg-blue-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-md hover:bg-blue-800 transition duration-200 text-sm sm:text-base"
               >
                 {selectedLeads.length === filteredLeads.length
                   ? "Deselect All"
@@ -709,7 +709,7 @@ function Leads() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-200 text-sm font-medium"
+                  className="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition duration-200 text-sm font-medium"
                 >
                   {formData._id ? "Update Deal" : "Add Deal"}
                 </button>
@@ -740,7 +740,7 @@ function Leads() {
                 </button>
                 <button
                   onClick={toggleDealStatus}
-                  className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-200 text-sm"
+                  className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition duration-200 text-sm"
                 >
                   Confirm
                 </button>

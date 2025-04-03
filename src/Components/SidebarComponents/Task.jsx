@@ -361,7 +361,7 @@ function Tasks() {
         <div className="flex items-center space-x-4">
           <button
             onClick={() => setIsPopupOpen(true)}
-            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+            className="bg-blue-500 hover:bg-blue-800 text-white px-4 py-2 rounded"
           >
             Add Task +
           </button>
@@ -622,7 +622,7 @@ function Tasks() {
             <div className="flex justify-end space-x-2">
               <button
                 onClick={handleAddTask}
-                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+                className="bg-blue-500 hover:bg-blue-800 text-white px-4 py-2 rounded"
               >
                 Add Task
               </button>

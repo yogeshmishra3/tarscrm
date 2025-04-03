@@ -612,7 +612,7 @@ function Leadmanagement() {
 
                     {stage === "Lead" && (
                       <button
-                        className="w-full bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600 text-sm"
+                        className="w-full bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-800 text-sm"
                         onClick={() =>
                           handleScheduleMeeting(deal._id, deal.leadName)
                         }
@@ -734,7 +734,7 @@ function Leadmanagement() {
               <div className="flex space-x-3 pt-2">
                 <button
                   onClick={submitMeeting}
-                  className="flex-1 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                  className="flex-1 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-800"
                 >
                   Submit
                 </button>
@@ -837,7 +837,7 @@ function Leadmanagement() {
               <div className="flex space-x-3 pt-4">
                 <button
                   onClick={handleSaveProject}
-                  className="flex-1 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                  className="flex-1 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-800"
                 >
                   Save Project
                 </button>

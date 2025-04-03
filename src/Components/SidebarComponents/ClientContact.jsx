@@ -330,7 +330,7 @@ function ClientContacts() {
                 setIsEditMode(false);
                 handleOpenModal();
               }}
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200 w-full md:w-auto"
+              className="bg-blue-800 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200 w-full md:w-auto"
             >
               Add Client +
             </button>
@@ -626,7 +626,7 @@ function ClientContacts() {
                 </button>
                 <button
                   type="submit"
-                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200"
+                  className="bg-blue-800 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200"
                 >
                   {isEditMode ? "Save Changes" : "Save"}
                 </button>

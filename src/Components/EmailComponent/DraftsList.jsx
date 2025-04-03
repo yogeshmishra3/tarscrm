@@ -10,7 +10,7 @@ const Button = ({ children, variant, size, onClick, className }) => {
       case "outline":
         return "bg-transparent border border-gray-300 hover:bg-gray-50";
       default:
-        return "bg-blue-600 text-white hover:bg-blue-700";
+        return "bg-blue-800 text-white hover:bg-blue-700";
     }
   };
 

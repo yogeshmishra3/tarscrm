@@ -111,7 +111,7 @@ function Login({ onLogin }) {
 
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200"
+            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-800 transition duration-200"
           >
             Sign In
           </button>

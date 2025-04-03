@@ -328,7 +328,6 @@ const EmailDashboard = () => {
 
       <div className="flex flex-1 overflow-hidden relative">
         {/* Mobile sidebar toggle button */}
-      
 
         {/* Mobile sidebar overlay */}
         {mobileSidebarOpen && (
@@ -419,7 +418,7 @@ const EmailDashboard = () => {
       {/* Mobile compose button - fixed at bottom right */}
       <div className="md:hidden fixed right-4 bottom-4 z-20">
         <button
-          className="bg-blue-600 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg"
+          className="bg-blue-800 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg"
           onClick={() => setShowCompose(true)}
         >
           <svg

@@ -10,11 +10,11 @@ const Sidebar = ({ activeView, setActiveView, setShowCompose }) => {
   ];
 
   return (
-    <div className="h-full bg-gray-50 border-r border-gray-200 w-16 md:w-48 flex flex-col overflow-hidden transition-all duration-300">
+    <div className="h-full bg-gray-50 border-r border-gray-200 w-16 md:w-full flex flex-col overflow-hidden transition-all duration-300">
       {/* Compose button */}
       <button
         onClick={() => setShowCompose(true)}
-        className="mx-2 md:mx-4 mt-4 mb-4 md:mb-6 gap-1 md:gap-2 flex items-center justify-center p-2 md:p-3 bg-blue-600 text-white rounded-full md:rounded-2xl hover:bg-blue-700 hover:shadow-md transition-all duration-200"
+        className="mx-2 md:mx-4 mt-4 mb-4 md:mb-6 gap-1 md:gap-2 flex items-center justify-center p-2 md:p-3 bg-blue-800 text-white rounded-full md:rounded-2xl hover:bg-blue-700 hover:shadow-md transition-all duration-200"
       >
         <Pencil className="h-4 w-4" />
         <span className="font-medium hidden md:inline">Compose</span>
@@ -64,7 +64,7 @@ const Sidebar = ({ activeView, setActiveView, setShowCompose }) => {
 
                   {/* Mobile count badge */}
                   <span
-                    className={`absolute top-0 right-0 text-xs bg-blue-600 text-white rounded-full h-4 w-4 flex items-center justify-center md:hidden`}
+                    className={`absolute top-0 right-0 text-xs bg-blue-800 text-white rounded-full h-4 w-4 flex items-center justify-center md:hidden`}
                   >
                     {item.count}
                   </span>

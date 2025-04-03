@@ -230,6 +230,9 @@ const Sidebar = () => {
             }
               ${!isSidebarOpen && isMobile ? "ml-8 mt-1.5" : ""}`}
           >
+            <span className="bg-gradient-to-r from-yellow-500 to-gray-400 bg-clip-text  text-lg  font-bold text-transparent">
+              TARS
+            </span>{" "}
             CRM
           </h2>
           <button
@@ -249,14 +252,14 @@ const Sidebar = () => {
             <li
               key={item.content}
               className={`flex items-center cursor-pointer px-3 py-2 rounded-md mx-1 mb-1 transition whitespace-nowrap
-      ${activeContent === item.content ? "bg-blue-700" : "hover:bg-blue-600"}
+      ${activeContent === item.content ? "bg-blue-700" : "hover:bg-blue-800"}
       ${!isSidebarOpen && isMobile ? "hidden" : ""}
     `}
               onClick={() => handleMenuClick(item.content)}
             >
               <FontAwesomeIcon icon={item.icon} className="text-sm" />
               <span
-                className={`ml-3 text-xs transition-opacity duration-300 ${
+                className={`ml-3 text-sm transition-opacity duration-300 ${
                   isSidebarOpen ? "opacity-100" : "opacity-0 md:hidden"
                 }
       ${!isSidebarOpen && isMobile ? "hidden" : ""}`}
@@ -268,7 +271,7 @@ const Sidebar = () => {
         </ul>
 
         {/* Logout */}
-        <div className="px-3 pb-3 mt-auto">
+        <div className=" px-1  mt-auto">
           <button
             onClick={handleLogoutClick}
             className={`flex items-center w-full text-amber-500 hover:bg-red-700 px-3 py-2 rounded-md transition ${

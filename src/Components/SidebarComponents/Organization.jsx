@@ -125,7 +125,7 @@ const OrganizationsInCards = () => {
                     </td>
                     <td className="p-3 text-sm border-b">
                       <button
-                        className="bg-blue-500 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-md hover:bg-blue-600 transition-colors text-xs sm:text-sm"
+                        className="bg-blue-500 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-md hover:bg-blue-800 transition-colors text-xs sm:text-sm"
                         onClick={() => handleEmail(lead.email)}
                       >
                         Email
@@ -166,7 +166,9 @@ const OrganizationsInCards = () => {
                     </div>
                     <div>
                       <p className="text-xs text-gray-500">Balance</p>
-                      <p className="text-sm font-medium">${balance.toFixed(2)}</p>
+                      <p className="text-sm font-medium">
+                        ${balance.toFixed(2)}
+                      </p>
                     </div>
                   </div>
                   <div className="flex justify-between items-center">
@@ -180,7 +182,7 @@ const OrganizationsInCards = () => {
                       {balance === 0 ? "Completed" : "Pending"}
                     </span>
                     <button
-                      className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600 transition-colors text-xs"
+                      className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-800 transition-colors text-xs"
                       onClick={() => handleEmail(lead.email)}
                     >
                       Email

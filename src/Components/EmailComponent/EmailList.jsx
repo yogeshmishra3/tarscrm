@@ -82,7 +82,6 @@ const EmailList = ({
   if (loading) {
     return (
       <div>
-    
         <div className="divide-y divide-gray-100">
           {[1, 2, 3, 4, 5].map((index) => (
             <div
@@ -110,7 +109,6 @@ const EmailList = ({
     return (
       <div>
         {/* Gmail-like category tabs */}
-     
 
         <div className="flex items-center justify-center h-64">
           <div className="text-center px-4">
@@ -148,7 +146,7 @@ const EmailList = ({
 
   return (
     <div>
-      <div className="divide-y divide-gray-100">
+      <div className="divide-y  divide-gray-100">
         {emails.map((email) => (
           <div
             key={email.id}
@@ -167,7 +165,7 @@ const EmailList = ({
                 }}
               >
                 {email.isChecked ? (
-                  <div className="w-3 h-3 sm:w-4 sm:h-4 bg-blue-600 rounded-sm flex items-center justify-center">
+                  <div className="w-3 h-3 sm:w-4 sm:h-4 bg-blue-800 rounded-sm flex items-center justify-center">
                     <Check size={12} className="text-white" />
                   </div>
                 ) : (

@@ -724,7 +724,7 @@ const Finance = () => {
                     <td className="p-3 border border-gray-200">
                       <button
                         onClick={() => openModal(deal)}
-                        className="px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
+                        className="px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-800 transition duration-300"
                       >
                         Edit
                       </button>
@@ -934,7 +934,7 @@ const Finance = () => {
             <div className="mt-6 flex justify-end space-x-4">
               <button
                 onClick={handleSave}
-                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
+                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-800 transition duration-300"
               >
                 Save
               </button>
