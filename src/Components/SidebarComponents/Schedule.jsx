@@ -235,7 +235,7 @@ export default function Calendar() {
   const days = loadCalendarDays();
 
   return (
-    <div className="flex w-fit flex-col md:flex-row gap-20 p-4 h-screen mx-auto">
+    <div className="flex w-full flex-col md:flex-row gap-20 p-4 h-screen mx-auto">
       <div className="w-full md:w-2/3">
         <div className="bg-white rounded-lg shadow-sm border border-gray-100">
           <div className="flex justify-between items-center p-4 border-b">
