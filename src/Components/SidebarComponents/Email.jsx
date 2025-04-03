@@ -7,7 +7,7 @@ import DraftsList from "../EmailComponent/DraftsList";
 import Header from "../EmailComponent/Header";
 
 // Define API URL
-const API_URL = "http://localhost:5000";
+const API_URL = "https://crm-brown-gamma.vercel.app/api";
 
 const EmailDashboard = () => {
   // States
