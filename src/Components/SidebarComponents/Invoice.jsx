@@ -65,6 +65,7 @@ const InvoiceForm = () => {
   };
 
   // Fetch invoices from API
+  // Fetch invoices from API
   const fetchPreviousInvoices = async () => {
     setIsLoading(true);
     setErrorMessage("");
@@ -81,15 +82,24 @@ const InvoiceForm = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
 
       const data = await response.json();
-      if (data.success) {
-        setPreviousInvoices(data.invoices || []);
-        setFilteredInvoices(data.invoices || []);
-      } else {
-        throw new Error(data.message || "Failed to fetch invoices");
-      }
+
+      // Check if data.invoices exists (assuming your API returns data in this structure)
+      // Otherwise, use an empty array
+      const invoicesArray = Array.isArray(data)
+        ? data
+        : data && Array.isArray(data.invoices)
+        ? data.invoices
+        : [];
+
+      setPreviousInvoices(invoicesArray);
+      setFilteredInvoices(invoicesArray);
     } catch (error) {
       console.error("Error fetching invoices:", error);
       setErrorMessage(`Failed to load invoices: ${error.message}`);
+
+      // Set to empty arrays to prevent errors
+      setPreviousInvoices([]);
+      setFilteredInvoices([]);
     } finally {
       setIsLoading(false);
     }
@@ -403,7 +413,7 @@ const InvoiceForm = () => {
   const saveInvoiceToBackend = async () => {
     try {
       const response = await fetch(`${API_BASE_URL}/invoices`, {
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
@@ -620,14 +630,12 @@ const InvoiceForm = () => {
   return (
     <div className="container mx-auto p-4 bg-gray-50 min-h-screen">
       <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-6xl mx-auto">
-        <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
-          <h1 className="text-xl sm:text-2xl font-bold text-center sm:text-left">
-            Invoice Management 
-          </h1>
-          <div className="flex flex-wrap w-full sm:w-auto justify-center sm:justify-end space-x-2 sm:space-x-4">
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-bold">Invoice Management System</h1>
+          <div className="flex space-x-4">
             <button
               onClick={() => setActiveTab("createInvoice")}
-              className={`px-3 py-2 sm:px-4 sm:py-2 rounded font-bold text-sm sm:text-base ${
+              className={`px-4 py-2 rounded font-bold ${
                 activeTab === "createInvoice"
                   ? "bg-blue-500 text-white"
                   : "bg-gray-200 text-gray-700 hover:bg-gray-300"
@@ -637,7 +645,7 @@ const InvoiceForm = () => {
             </button>
             <button
               onClick={() => setActiveTab("previousInvoices")}
-              className={`px-3 py-2 sm:px-4 sm:py-2 rounded font-bold text-sm sm:text-base ${
+              className={`px-4 py-2 rounded font-bold ${
                 activeTab === "previousInvoices"
                   ? "bg-blue-500 text-white"
                   : "bg-gray-200 text-gray-700 hover:bg-gray-300"
@@ -1070,9 +1078,7 @@ const InvoiceForm = () => {
                     contactEmail: "",
                   });
                   // Get a new invoice number
-                  fetch(
-                    "https://crm-brown-gamma.vercel.app/api/invoices/latest-number"
-                  )
+                  fetch("http://localhost:5000/api/invoices/latest-number")
                     .then((response) => response.json())
                     .then((data) => {
                       if (data.success && data.latestInvoiceNumber) {
