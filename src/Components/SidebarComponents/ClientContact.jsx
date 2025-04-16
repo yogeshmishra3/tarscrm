@@ -301,10 +301,10 @@ function ClientContacts() {
   };
 
   return (
-    <div className="w-full h-screen bg-gray-50">
+    <div className="w-full h-screen bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4 py-6">
         <header className="flex flex-col md:flex-row justify-between items-center mb-8">
-          <h1 className="text-3xl font-semibold text-gray-800 mb-4 md:mb-0">
+          <h1 className="text-3xl font-semibold text-gray-800 dark:text-white mb-4 md:mb-0">
             Client Contacts
           </h1>
           <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
@@ -313,14 +313,14 @@ function ClientContacts() {
               placeholder="Search by name..."
               value={searchTerm}
               onChange={handleSearchChange}
-              className=" dark:text-black px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-full md:w-auto"
+              className="dark:text-white dark:bg-gray-700 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-full md:w-auto"
             />
             <button
               onClick={toggleSelectionMode}
-              className={`px-4 py-2 rounded-lg transition duration-200 w-full md:w-auto g${
+              className={`px-4 py-2 rounded-lg transition duration-200 w-full md:w-auto ${
                 selectionMode
                   ? "bg-gray-600 text-white hover:bg-gray-700"
-                  : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                  : "bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600"
               }`}
             >
               {selectionMode ? "Cancel Selection" : "Select"}
@@ -339,8 +339,8 @@ function ClientContacts() {
 
         {/* Bulk Actions - Shown only when in selection mode */}
         {selectionMode && selectedClients.length > 0 && (
-          <div className="bg-blue-50 p-4 rounded-lg mb-4 flex justify-between items-center">
-            <p className="text-blue-800">
+          <div className="bg-blue-50 dark:bg-blue-900 p-4 rounded-lg mb-4 flex justify-between items-center">
+            <p className="text-blue-800 dark:text-blue-200">
               {selectedClients.length} client(s) selected
             </p>
             <div className="flex gap-2">
@@ -360,13 +360,13 @@ function ClientContacts() {
           </div>
         )}
 
-        <div className="bg-white rounded-lg shadow overflow-hidden">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
           <div
             className="overflow-x-auto"
             style={{ maxHeight: "calc(100vh - 200px)" }}
           >
             <table className="min-w-full">
-              <thead className="bg-gray-100 sticky top-0">
+              <thead className="bg-gray-100 dark:bg-gray-700 sticky top-0">
                 <tr>
                   {selectionMode && (
                     <th className="px-4 py-3 text-left">
@@ -378,41 +378,43 @@ function ClientContacts() {
                       />
                     </th>
                   )}
-                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase">
+                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 dark:text-gray-300 uppercase">
                     #
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase">
+                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 dark:text-gray-300 uppercase">
                     Client ID
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase">
+                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 dark:text-gray-300 uppercase">
                     Name
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase">
+                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 dark:text-gray-300 uppercase">
                     Email
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase">
+                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 dark:text-gray-300 uppercase">
                     Phone
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase">
+                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 dark:text-gray-300 uppercase">
                     Address
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase">
+                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 dark:text-gray-300 uppercase">
                     Company Name
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase">
+                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 dark:text-gray-300 uppercase">
                     Status
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 uppercase">
+                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-600 dark:text-gray-300 uppercase">
                     Action
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                 {filteredClients.map((client, index) => (
                   <tr
                     key={client._id}
-                    className={`hover:bg-gray-50 transition duration-200 ${
-                      selectedClients.includes(client._id) ? "bg-blue-50" : ""
+                    className={`hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-200 ${
+                      selectedClients.includes(client._id)
+                        ? "bg-blue-50 dark:bg-blue-900"
+                        : ""
                     }`}
                   >
                     {selectionMode && (
@@ -425,33 +427,33 @@ function ClientContacts() {
                         />
                       </td>
                     )}
-                    <td className="px-6 py-4 text-sm text-gray-700">
+                    <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
                       {index + 1}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-700">
+                    <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
                       {client.clientId}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-700">
+                    <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
                       {client.name}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-700">
+                    <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
                       {client.email}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-700">
+                    <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
                       {client.phone}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-700">
+                    <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
                       {client.address}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-700">
+                    <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
                       {client.companyname}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-700">
+                    <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
                       <span
                         className={`px-2 py-1 rounded text-xs ${
                           client.status === "Active"
-                            ? "bg-green-100 text-green-800"
-                            : "bg-red-100 text-red-800"
+                            ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                            : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
                         }`}
                       >
                         {client.status}
@@ -461,13 +463,13 @@ function ClientContacts() {
                       <div className="flex space-x-2">
                         <button
                           onClick={() => editClient(client._id)}
-                          className="text-yellow-600 hover:text-yellow-800 bg-yellow-100 hover:bg-yellow-200 px-2 py-1 rounded"
+                          className="text-yellow-600 hover:text-yellow-800 dark:text-yellow-400 dark:hover:text-yellow-300 bg-yellow-100 hover:bg-yellow-200 dark:bg-yellow-900 dark:hover:bg-yellow-800 px-2 py-1 rounded"
                         >
                           Edit
                         </button>
                         <button
                           onClick={() => deleteClient(client._id)}
-                          className="text-red-600 hover:text-red-800 bg-red-100 hover:bg-red-200 px-2 py-1 rounded"
+                          className="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 bg-red-100 hover:bg-red-200 dark:bg-red-900 dark:hover:bg-red-800 px-2 py-1 rounded"
                         >
                           Delete
                         </button>
@@ -479,7 +481,7 @@ function ClientContacts() {
                   <tr>
                     <td
                       colSpan={selectionMode ? "10" : "9"}
-                      className="px-6 py-8 text-center text-gray-500"
+                      className="px-6 py-8 text-center text-gray-500 dark:text-gray-400"
                     >
                       No clients found
                     </td>
@@ -493,9 +495,9 @@ function ClientContacts() {
 
       {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-gray-100 bg-opacity-50 flex justify-center items-center p-4 z-50">
-          <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-md">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+        <div className="fixed inset-0 bg-gray-100 dark:bg-gray-900 bg-opacity-50 dark:bg-opacity-50 flex justify-center items-center p-4 z-50">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl w-full max-w-md">
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6">
               {isEditMode ? "Edit Client" : "Add Client"}
             </h2>
             <form
@@ -512,7 +514,7 @@ function ClientContacts() {
                     onChange={handleInputChange}
                     required
                     disabled={true}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100"
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100 dark:bg-gray-700 dark:text-white"
                   />
                 </div>
                 <input
@@ -522,7 +524,7 @@ function ClientContacts() {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
                 />
                 <input
                   type="email"
@@ -531,7 +533,7 @@ function ClientContacts() {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
                 />
                 <div className="relative">
                   <input
@@ -541,12 +543,16 @@ function ClientContacts() {
                     value={formData.phone}
                     onChange={handleInputChange}
                     required
-                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                      phoneError ? "border-red-500" : "border-gray-300"
+                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white ${
+                      phoneError
+                        ? "border-red-500"
+                        : "border-gray-300 dark:border-gray-600"
                     }`}
                   />
                   {phoneError && (
-                    <p className="text-red-500 text-xs mt-1">{phoneError}</p>
+                    <p className="text-red-500 dark:text-red-400 text-xs mt-1">
+                      {phoneError}
+                    </p>
                   )}
                 </div>
                 <input
@@ -556,7 +562,7 @@ function ClientContacts() {
                   value={formData.address}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 md:col-span-2"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white md:col-span-2"
                 />
                 <input
                   type="text"
@@ -565,7 +571,7 @@ function ClientContacts() {
                   value={formData.companyname}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
                 />
                 <input
                   type="date"
@@ -574,7 +580,7 @@ function ClientContacts() {
                   onChange={handleInputChange}
                   required
                   title="Please enter the date in DD/MM/YYYY format."
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
                 />
                 <input
                   type="text"
@@ -583,7 +589,7 @@ function ClientContacts() {
                   value={formData.city}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
                 />
                 <input
                   type="text"
@@ -592,14 +598,14 @@ function ClientContacts() {
                   value={formData.industry}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
                 />
                 <select
                   name="status"
                   value={formData.status}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
                 >
                   <option value="Active">Active</option>
                   <option value="Inactive">Inactive</option>
@@ -610,7 +616,7 @@ function ClientContacts() {
                 placeholder="Additional Notes"
                 value={formData.note}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 h-32"
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white h-32"
               ></textarea>
               <div className="flex justify-end gap-3 mt-6">
                 <button
