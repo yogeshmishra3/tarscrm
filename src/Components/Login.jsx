@@ -7,7 +7,7 @@ function Login({ onLogin }) {
   const [isLoading, setIsLoading] = useState(false);
 
   // Static credentials
-  const VALID_EMAIL = "yogibaba1207@gmail.com";
+  const VALID_EMAIL = "admin@gmail.com";
   const VALID_PASSWORD = "TARS@123";
 
   const handleLogin = (e) => {
