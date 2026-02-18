@@ -298,7 +298,7 @@ const Sidebar = () => {
           w-full relative`}
       >
         {/* Main Content */}
-        <div className="p-4 md:p-6 pt-16 md:pt-6">{renderComponent()}</div>
+        <div className="">{renderComponent()}</div>
       </div>
 
       {/* Logout Confirmation Modal */}
